@@ -54,6 +54,8 @@ class TransactionController extends Controller
         }
         $checkValue = Wallet::where('user_id', $data['from_wallet_id'])->first();
         $addValue = Wallet::where('user_id', $data['to_wallet_id'])->first();
+        $data['from_wallet_id'] = $checkValue['from_wallet_id'];
+        $data['to_wallet_id'] = $checkValue['to_wallet_id'];
         if (empty($addValue)) {
             session()->flash('error', 'Tai khoan nhan chua tao vi!');
             return redirect()->route('transaction.create');
